@@ -1,0 +1,15 @@
+/* app.component.css */
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+router-outlet {
+  margin-top: 64px; /* Adjust for fixed toolbar */
+}

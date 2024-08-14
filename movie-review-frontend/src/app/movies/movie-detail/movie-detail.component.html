@@ -1,0 +1,68 @@
+<div class="movie-detail-container">
+  <!-- Movie Details -->
+  <mat-card *ngIf="movie" class="movie-detail-card">
+    <mat-card-header>
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movie.genre }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ movie.description }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section">
+    <h3>Reviews</h3>
+    <div *ngIf="reviews.length > 0; else noReviews">
+      <div *ngFor="let review of reviews" class="review-item">
+        <div matLine class="review-content">
+          <h4 class="review-username">{{ review.user.username }}:</h4>
+          <p class="review-comment">{{ review.comment }}</p>
+        </div>
+        <p class="review-rating">Rating: {{ review.rating }}</p>
+        <div class="review-actions" *ngIf="isLoggedInUser(review.user._id)">
+          <button mat-button color="primary" (click)="editReview(review)">
+            Edit
+          </button>
+          <button mat-button color="warn" (click)="deleteReview(review._id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noReviews>
+      <p class="no-reviews-message">No reviews available for this movie.</p>
+    </ng-template>
+  </section>
+
+  <!-- Add/Edit Review Form -->
+  <section class="add-review-section">
+    <h3>{{ editingReviewId ? "Edit" : "Add a" }} Review</h3>
+    <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Comment</mat-label>
+        <textarea matInput formControlName="comment"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Rating</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="rating"
+          min="1"
+          max="10"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="submit-button"
+      >
+        {{ editingReviewId ? "Save" : "Submit" }} Review
+      </button>
+    </form>
+  </section>
+</div>

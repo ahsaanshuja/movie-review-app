@@ -1,0 +1,43 @@
+.movie-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.movie-detail-card {
+  margin-bottom: 30px;
+}
+
+.reviews-section {
+  margin-bottom: 30px;
+}
+
+.review-content {
+  display: flex;
+  gap: 3;
+  align-items: center;
+  text-align: center;
+}
+.rating {
+  color: #fbc02d;
+  font-weight: bold;
+}
+
+.add-review-section {
+  margin-top: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.no-movies-message {
+  color: #757575;
+  font-style: italic;
+  text-align: center;
+}

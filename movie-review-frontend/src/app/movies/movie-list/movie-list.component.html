@@ -1,0 +1,55 @@
+<div class="movie-list-container">
+  <h2>Movies</h2>
+
+  <button
+    *ngIf="isAdmin"
+    mat-raised-button
+    color="accent"
+    (click)="openAddMovieDialog()"
+  >
+    Add New Movie
+  </button>
+
+  <div *ngIf="movies.length > 0; else noMovies">
+    <mat-card *ngFor="let movie of movies" class="movie-card">
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ movie.genre }}</p>
+        <p>{{ movie.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="viewDetails(movie.id)" mat-button color="primary">
+          View Details
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <ng-template #noMovies>
+    <p class="no-movies-message">No movies available at the moment.</p>
+  </ng-template>
+</div>
+
+<!-- Dialog Template for Adding Movies -->
+<ng-template #addMovieDialog>
+  <div class="add-movie-dialog">
+    <h2>Add New Movie</h2>
+    <form [formGroup]="addMovieForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Genre</mat-label>
+        <input matInput formControlName="genre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Add Movie</button>
+    </form>
+  </div>
+</ng-template>

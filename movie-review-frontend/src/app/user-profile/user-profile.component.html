@@ -1,0 +1,15 @@
+<div class="user-profile-container">
+  <h2>Your Reviews</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let review of userReviews">
+      <p><strong>Rating:</strong> {{ review.rating }}</p>
+      <p>{{ review.comment }}</p>
+      <button mat-button color="primary" (click)="deleteReview(review._id)">
+        Delete
+      </button>
+      <button mat-button color="primary" (click)="updateReview(review._id)">
+        Edit
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>
